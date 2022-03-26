@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import { Platform, StatusBar as StatusBarAndroid } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
@@ -15,7 +16,8 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        {Platform.OS == "ios" && <StatusBar />}
+        {Platform.OS != "ios" && <StatusBarAndroid />}
       </SafeAreaProvider>
     );
   }
